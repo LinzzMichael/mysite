@@ -20,7 +20,7 @@ import photoshow.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',login.views.index),
+    path('',login.views.login),
     path('index/', login.views.index),
     path('login/', login.views.login),
     path('register/', login.views.register),
