@@ -28,4 +28,5 @@ urlpatterns = [
     path('captcha/', include('captcha.urls')),
     path('confirm/', login.views.user_confirm),
     path('photo/', photoshow.views.photo),
+    path('upload/',photoshow.views.uploadImg),
 ]

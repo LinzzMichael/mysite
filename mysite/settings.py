@@ -26,9 +26,8 @@ SECRET_KEY = '5ts+8$j!ye#jg-%nu$s(hyxce-zm@6w3=t!%)(0nxl5r4if5gh'
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','47.100.47.146']
-STATIC_ROOT = [
-    os.path.join(BASE_DIR, "static"),
-]
+STATIC_ROOT =  os.path.join(BASE_DIR, "static")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 # Application definition
@@ -124,9 +123,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "static"),
-# ]
+MEDIA_URL = '/media/'
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, "static"),
+#]
 
 EAMIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.aliyun.com'
