@@ -26,8 +26,8 @@ SECRET_KEY = '5ts+8$j!ye#jg-%nu$s(hyxce-zm@6w3=t!%)(0nxl5r4if5gh'
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','47.100.47.146']
-STATIC_ROOT =  os.path.join(BASE_DIR, "static")
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# STATIC_ROOT =  os.path.join(BASE_DIR, "static")
+
 
 
 # Application definition
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'login',
     'captcha',
-    'photoshow',
+    'album',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -80,9 +81,13 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mysite',
+        'Host': 'localhost',
+        'USER': 'root',
+        'PASSWORD': 'Lin096310',
+        'port': '3306',
+        }
 }
 
 
@@ -108,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'zh-hans'
+LANGUAGE_CODE = 'zh-hans' 
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -124,14 +129,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-#STATICFILES_DIRS = [
-#    os.path.join(BASE_DIR, "static"),
-#]
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+STATICFILES_DIRS = [
+   os.path.join(BASE_DIR, "static"),
+]
 
 EAMIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.aliyun.com'
-EMAIL_PORT = 265
-EMAIL_HOST_USER = 'micheallinzz@sina.cn'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'michaellinzz@aliyun.com'
 EMAIL_HOST_PASSWORD = 'Lin096310'
 EMAIL_USE_SSL = True
 

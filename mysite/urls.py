@@ -15,18 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-import login.views
-import photoshow.views
+from django.conf.urls import url
+# import login.views
+# import album.views
+from django.views.static import serve
+# 自己项目下的settings文件内的MEDIA_ROOT属性
+from mysite.settings import MEDIA_ROOT
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',login.views.login),
-    path('index/', login.views.index),
-    path('login/', login.views.login),
-    path('register/', login.views.register),
-    path('logout/', login.views.logout),
+    path('album/',include('album.urls')),
+    # path('index/', login.views.index),
+    # path('login/', login.views.login),
+    # path('register/', login.views.register),
+    # path('logout/', login.views.logout),
     path('captcha/', include('captcha.urls')),
-    path('confirm/', login.views.user_confirm),
-    path('photo/', photoshow.views.photo),
-    path('upload/',photoshow.views.uploadImg),
+    # path('confirm/', login.views.user_confirm),
+    # path('photo/', album.views.myAlbum),
+    # path('upload/',album.views.myAlbum),
+    # path('media/(?P<path>.*)$', serve, {"document_root":MEDIA_ROOT}),
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
+    path('',include('login.urls')),
 ]

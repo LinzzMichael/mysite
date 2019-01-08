@@ -1,0 +1,21 @@
+{% extends 'photoshow/albumBase.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+<div class="container">
+    <div class="col-md-4 col-md-offset-4">
+        <h1 class="text-center">创建新相册</h1>
+        <form role="form">
+            <div class="form-group">
+                <label for="title">相册名称</label>
+                <input type="text" class="form-control" placeholder="请输入相册名称">
+            </div>
+            <div class="form-group">
+                <label for="introduction">相册简介</label>
+                <textarea type="text" class="form-control row="3"></textarea> 
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

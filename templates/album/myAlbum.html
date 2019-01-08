@@ -1,0 +1,93 @@
+{% extends 'album/albumBase.html' %}
+{% load staticfiles %}
+{% block title %}我的相册集{% endblock %}
+{% block css %}
+	<link rel="stylesheet" href="{% static 'album/index/css/baguetteBox.min.css' %}">
+	<link rel="stylesheet" href="{% static 'album/index/css/thumbnail-gallery.css' %}">
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<!-- <h1 class="text-center">我的相册集</h1> -->
+		{% if not request.session.is_login %}
+			<p class="page-description text-center">
+				您还未登陆！<a href="{% url 'login:login' %}?next={{ request.path }}/">点此登陆。</a>
+			</p>
+		{% else %}
+			<h1 class="text-center">我的相册集</h1> 
+				{% if albums %}
+					<div class="tz-gallery">
+
+		        		<div class="row">
+							{% for album in albums %}
+								 <div class="col-sm-6 col-md-4">
+		                			<div class="thumbnail">
+		                    			<a class="lightbox" href="{{MEDIA_URL}}{{album.thumb}}">
+		                        			<img src="{{MEDIA_URL}}{{album.thumb}}" alt="Park">
+		                    			</a>
+		                    			<div class="caption">
+		                        			<h3>{{ album.title}}</h3>
+		                        			<p>{{ album.introduction }}</p>
+		                    			</div>
+		                    		</div>
+		            			</div>
+		            		{% endfor %}
+		            	</div>
+		            </div>
+
+				{% else %}
+				<p class="page-description text-center">
+				您还创建任何相册！<a data-target="#myModal" data-toggle="modal">点此创建一个新相册。</a>
+				</p>
+				<!-- 模态框（Modal） -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title text-center" id="myModalLabel">
+									新建相册
+								</h4>
+							</div>
+							<div class="modal-body">
+							<form class="form-horizontal" role="form">
+							<div class="form-group ">
+								<label class="col-sm-3 control-label">相册名：</label>
+								<div class="col-sm-6">
+									<input class="form-control" type="text" name="AlbumName">
+								</div>
+							</div>
+
+							<div class="form-group">
+                				<label  class="col-sm-3 control-label">相册简介：</label>
+                				<div class="col-sm-6">
+                				<!-- <input class="form-control" type="text" name="AlbumName"> -->
+                				<textarea class="form-control" name="introduction" cols="6">
+                					
+                				</textarea> 
+                				</div>
+            				</div>
+            				</form>
+            				</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+								</button>
+								<button type="button" class="btn btn-primary">
+									提交更改
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal -->
+				</div>
+				{% endif %}
+
+		{% endif %}
+
+	</div>
+	<script type="text/javascript" src="{% static 'album/index/js/baguetteBox.min.js' %}"></script>
+	<script type="text/javascript">
+		baguetteBox.run('.tz-gallery');
+	</script>
+{% endblock %}
