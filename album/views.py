@@ -41,6 +41,28 @@ def uploadImg(request):
 	content = []
 	return render(request, 'album/upload.html')
 
+
+def createAlbum(request):
+	if request.method == 'POST':
+		if request.session.get('is_login', None):
+			ownerName = request.session.get('user_name', None)
+			owner = login.models.User.objects.get(name=ownerName)
+			title = request.POST['title']
+			introduction = request.POST['introduction']
+			is_visible = request.POST['public']
+			newAlbum = Album(title = title,
+						owner = owner,
+						thumb = request.FILES.get('img'),
+						introduction = introduction,
+						is_visible = is_visible
+			 )
+			newAlbum.save()
+			return redirect('/album/')
+		else:
+			return render(request, 'album/myAlbum.html')
+	return render(request, 'album/myAlbum.html') 
+
+
 def myAlbum(request):
 	if request.method == 'GET':
 		if request.session.get('is_login', None):

@@ -33,7 +33,7 @@ urlpatterns = [
     # path('confirm/', login.views.user_confirm),
     # path('photo/', album.views.myAlbum),
     # path('upload/',album.views.myAlbum),
-    # path('media/(?P<path>.*)$', serve, {"document_root":MEDIA_ROOT}),
+    path('media/(?P<path>.*)$', serve, {"document_root":MEDIA_ROOT}),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
     path('',include('login.urls')),
 ]

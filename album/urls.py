@@ -8,6 +8,9 @@ app_name = 'album'
 urlpatterns = [
     # re_path(r'^album/$',views.AlbumListView.as_view(),name='album_list'),
     # re_path(r'^album/(?P\d+)/(?P[-\w]+)/$',views.AlbumDetail.as_view(),name='album_detail'),
+    
+    path('photo/',views.myAlbum),
+    path('createAlbum/',views.createAlbum),
+    path('upload/',views.uploadImg),
     path('', views.myAlbum),
-    path('photo/',views.myAlbum)
 ]
