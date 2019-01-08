@@ -11,7 +11,7 @@ class Album(models.Model):
     introduction = models.TextField(max_length=256,default="我的相册")
     owner = models.ForeignKey('login.User', on_delete = models.PROTECT)
     #创建相册封面，存储地址为albums文件夹，并且将封面图片调整到300,图片质量为90
-    thumb = ProcessedImageField(upload_to='albums',processors=[ResizeToFit(300)],format='JPEG',options={'quality':90})
+    thumb = ProcessedImageField(upload_to='albums/',processors=[ResizeToFit(1280)],format='JPEG',options={'quality':90})
     is_visible = models.BooleanField(default=True)      #是否可见
     create_data = models.DateTimeField(auto_now_add=True)   #创建日期
     mod_data = models.DateTimeField(auto_now=True)    #修改日期
