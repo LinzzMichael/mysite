@@ -3,6 +3,8 @@ from django.views.generic import DetailView,ListView
 from .models import Album,AlbumImage
 from django.shortcuts import redirect
 import login
+import uuid 
+import os
 
 # Create your views here.
 
@@ -56,6 +58,10 @@ def createAlbum(request):
 						introduction = introduction,
 						is_visible = is_visible
 			 )
+			# file = request.FILES.get('img')
+			# ext = file.name.split('.')[-1]
+			# filename = '{}.{}'.format(uuid.uuid4(),ext)
+			# path = os.path.join("media", str(owner.id), "albums",filename)
 			newAlbum.save()
 			return redirect('/album/')
 		else:
@@ -73,4 +79,10 @@ def myAlbum(request):
 
 	return render(request, 'album/myAlbum.html')
 
-	
+
+
+# #获取上传文件的保存路径的函数,此处仅获取对应用户的文件夹
+# #后续路径由处理函数处理
+# def getUploadPath(user):
+# 	user_uuid = uuid.uuid4.hex[:10]
+# 	return user_uuid
